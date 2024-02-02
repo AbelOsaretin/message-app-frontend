@@ -25,7 +25,8 @@ function App() {
     // console.log(signer);
   }
 
-  async function sendMessage(newMessage) {
+  async function sendMessage() {
+    const newMessage = document.getElementById("newMessage").value;
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     await provider.send("eth_requestAccounts", []);
@@ -35,7 +36,7 @@ function App() {
 
     const contract = new ethers.Contract(contractAddress, abi, signer);
     try {
-      const transaction = await contract.setMessage("Hello Boss");
+      const transaction = await contract.setMessage(newMessage);
       await transaction.wait();
       console.log("Message Set");
     } catch (err) {
@@ -81,6 +82,7 @@ function App() {
         </a>
         <button onClick={connectWallet}>Conncect Wallet</button>
         <button onClick={sendMessage}>Send Message</button>
+        <input id="newMessage" placeholder="Enter Message"></input>
         <button onClick={receiveMessage}>View Message</button>
       </header>
     </div>
