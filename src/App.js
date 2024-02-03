@@ -1,25 +1,14 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { abi, contractAddress } from "./constants.js";
-//import { ethers } from "ethers";
 const { ethers } = require("ethers");
 
-//const { ethers } = require("ethers");
-
 function App() {
-  /*   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const contract = new ethers.Contract(contractAddress, abi, provider);
-  const signer = provider.getSigner();
-  console.log(signer); */
-
-  //const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //const contract = new ethers.Contract(contractAddress, abi, provider);
-
   async function connectWallet() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
+    //const signer = provider.getSigner();
 
     console.log("Wallet Connected............");
     // console.log(signer);
@@ -45,8 +34,6 @@ function App() {
   }
 
   async function receiveMessage() {
-    /*     const message = await contract.getMessage();
-    console.log("Message:", message.toString()); */
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     await provider.send("eth_requestAccounts", []);
@@ -80,7 +67,7 @@ function App() {
         >
           Learn React
         </a>
-        <button onClick={connectWallet}>Conncect Wallet</button>
+        <button onClick={connectWallet}>Connect Wallet</button>
         <button onClick={sendMessage}>Send Message</button>
         <input id="newMessage" placeholder="Enter Message"></input>
         <button onClick={receiveMessage}>View Message</button>
